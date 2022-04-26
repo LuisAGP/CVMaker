@@ -1,5 +1,3 @@
-from distutils import extension
-from pipes import Template
 from django.db import models
 
 

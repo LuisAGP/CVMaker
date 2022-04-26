@@ -1,6 +1,5 @@
 
-const url     = window.location.toString().split('/');
-export const urlBase = url.includes('codsoft.lhr.rocks') ? "https://codsoft.lhr.rocks" : "http://localhost:8000"; 
+export const urlBase = window.location.origin; 
 
 export function ajax(json){
 
