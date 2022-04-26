@@ -1,0 +1,110 @@
+.message-panel{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100; 
+}
+
+.hide-message{
+    transition: all .6s ease;
+    opacity: 0;
+    z-index: -1;
+}
+
+.show-message{
+    top: -120%;
+    transition: all .6s ease;
+    top: 0rem;
+}
+
+.message-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem auto 0 auto;
+    height: 4rem;
+    min-height: 4rem;
+    border-radius: 1rem;
+    width: 25rem;
+    display: flex;
+    padding: .8rem;
+    box-shadow: 2px 4px 24px -1px rgba(0,0,0,0.67);
+    -webkit-box-shadow: 2px 4px 24px -1px rgba(0,0,0,0.67);
+    -moz-box-shadow: 2px 4px 24px -1px rgba(0,0,0,0.67);
+    background-color: white;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .message-box{
+        top: 1rem;
+        max-width: 90%;
+    }
+}
+
+.icon-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 2.5rem;
+}
+
+.icon-content span{
+    width: .3rem;
+    min-height: 3rem;
+    border-radius: .3rem;
+}
+
+/* Type info */
+div.info svg{
+    color: #1976d2;
+}
+
+span.info{
+    background-color: #1976d2;
+}
+
+
+
+/* Type alert */
+div.alert svg{
+    color: #ffc300;
+}
+
+span.alert{
+    background-color: #ffc300;
+}
+
+
+
+/* Type chek */
+div.check svg{
+    color: #28b463;
+}
+
+span.check{
+    background-color: #28b463;
+}
+
+
+
+
+/* Type error */
+div.error svg{
+    color: #d35c5c;
+}
+
+span.error{
+    background-color: #d35c5c;
+}
+
+
+
+
+.message-box .message-field{
+    width: calc(100% - 2.5rem);
+    padding: 1.5rem;
+    color: gray;
+    font-family: 'Montserrat', sans-serif;
+}

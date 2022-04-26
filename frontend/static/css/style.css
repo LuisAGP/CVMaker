@@ -1,0 +1,35 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+:root {
+    --primary-color: #2E5E4E;
+    --secondary-color: #DBD3D8;
+    --info-color: #93A7AA;
+    --info-color-dark: #A7B5B9;
+    --fcolor1: white;
+    --fcolor2: #2f2f2f;
+}
+
+body{
+    /* font-family: 'Noto Sans', sans-serif; */
+    font-family: 'PT Sans', sans-serif;
+    padding-top: 4.2rem;;
+}
+
+hr{
+    margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: unset;
+}

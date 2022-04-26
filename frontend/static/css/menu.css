@@ -1,0 +1,86 @@
+
+
+/********************* Toolbar *********************/
+
+.toobar{
+    position: fixed;
+    background-color: var(--primary-color);
+    color: var(--fcolor1);
+    width: 100%;
+    height: 4.2rem;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 1.3rem;
+    letter-spacing: .2rem;
+    z-index: 1;
+}
+
+.toolbar-icon a{ display: flex;}
+.toolbar-icon a:hover{ transform: scale(1.1); }
+
+
+.toolbar-title{
+    transition: all .6s ease;
+    margin-left: 1.3rem;
+}
+
+
+.toolbar-title-menu-opened{
+    transition: all .6s ease;
+    margin-left: 13.5rem;
+}
+
+/********************* Toolbar *********************/
+
+
+
+/*********************** Menu **********************/
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15rem;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--secondary-color);
+    z-index: 2;
+    transition: all .6s ease;
+}
+
+
+.hidden{
+    width: 0rem;
+    transition: all .6s ease;
+}
+
+
+.close-menu-button{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 4.2rem;
+    color: var(--fcolor2);
+    padding-right: .8rem;
+}
+
+.close-menu-button a{ display: flex; }
+.close-menu-button a:hover{ transform: scale(1.1); }
+
+.menu .menu-item{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--fcolor2);
+}
+
+.menu .menu-item:hover{
+    color: var(--primary-color);
+    background-color: var(--info-color-dark);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.menu .menu-item span{ margin-left: 1.3rem; }

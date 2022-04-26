@@ -1,0 +1,232 @@
+
+<style>
+    @page {
+        /*Sheet size: width: 21.59cm height: 27.94cm*/
+        size: A4;    /* Change from the default size of A4 */
+        margin: 0mm; /* Set margin on each page */
+    }
+    a{
+        text-decoration: none;
+        color: unset;
+    }
+    .content{
+        width: 21.59cm;
+        min-height: 29.94cm;
+        display: flex;
+    }
+    .left-side{
+        width: 30%;
+        min-height: 29.94cm;
+        background-color: rgb(255, 255, 255);
+    }
+    .right-bar{
+        color: rgb(58, 58, 58);
+        min-height: 29.94cm;
+        background-color: #dcecee;
+        width: 70%;
+    }
+    h1,h2,h3,h4,h5,h6{
+        margin: 0;
+    }
+    .triangle{
+        width: 0;
+        height: 0;
+        border-left: 3.24cm solid transparent;
+        border-right: 3.24cm  solid transparent;
+        border-top: 110px solid #7c8687;
+        margin-bottom: 1.8rem;
+    }
+    .image-section{
+        width: 100%;
+        height: 14rem;
+        background-color: #7c8687;
+        position: relative;
+    }
+    .image-content{
+        overflow: hidden;
+        border-radius: 50%;
+        width: 10rem;
+        height: 10rem;
+        position: absolute;
+        top: 2.5rem;
+        left: 1.1cm;
+        background-color: white;
+    }
+    .image-content img{
+        text-align: center;
+        width: 100%;
+    }
+    .info-section{
+        padding: 1.5rem 1rem 0 1rem;
+        color: #7c8687;
+        line-height: 1.2;
+    } 
+    h4{
+        text-transform: uppercase;
+        margin: 0 0 2.2rem 0;
+        padding: 0;
+        position: relative;
+        letter-spacing: .2rem;
+    }
+    h4::after{
+        content: '';
+        width: 3.5rem;
+        height: .3rem;
+        background-color: #7c8687;
+        position: absolute;
+        bottom: -.8rem;
+        left: 0;
+    }
+    .contact-section ul{
+        padding: 0;
+        list-style: none;
+    }
+    li{
+        padding-bottom: .6rem;
+        font-size: .9rem;
+    }
+    .contact-section img{
+        margin-right: .7rem;
+    }
+    .contact-section li{
+        display: flex;
+        align-items: center;
+    }
+    .languages-section ul, .skills-section ul{
+        padding: 0;
+        list-style: inside;
+    }
+    .languages-section li, .skills-section li{
+        padding-bottom: .6rem;
+    }
+    .name-section{
+        text-align: center;
+        padding: 3rem 0;
+    }
+    .name-section h6{
+        color: #7c8687;
+        font-size: 1.1rem;
+        font-weight: lighter;
+    }
+    h1{
+        font-weight: lighter;
+    }
+    .right-bar .info-section{
+        padding-left: 1.5rem; 
+        padding-right: 1.5rem; 
+        text-align: justify;
+    }
+    .work-section, .education-section{
+        padding-left: 1rem;
+    }
+    .work-section ul, .education-section ul{
+        margin-top: .5rem;
+    }
+    .right-bar ul{
+        padding: 0 0 0 .5rem;
+        list-style: none;
+    }
+    .education-item{
+        display: flex;
+        align-items: center;
+        padding-bottom: 1rem;
+    }
+    .education-item .year{
+        width: 90px;
+        text-align: center;
+    }
+    h5{
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    p{
+        margin: 0;
+        font-size: .9rem;
+    }
+</style>
+<div class="content" id="template-div">
+    <div class="left-side">
+        <div class="image-section">
+            <div class="image-content" id="image-section">
+                <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD-l889V8_Nv64SYZECELEBUzvWgmgxdlAow&usqp=CAU" alt=""> -->
+            </div>
+        </div>
+        <div class="triangle"></div>
+
+        <div class="info-section">
+            <div class="contact-section">
+                <h4>Contact</h4>
+                <ul>
+                    <!-- <li><img src="telefono.png" alt=""><span>+52 3929410261</span></li>
+                    <li><img src="email.png" alt=""><span>luis.lagp4598@gmail.com</span></li>
+                    <li><img src="linkedin.png" alt=""><span><a target="_blank" href="https://www.linkedin.com/in/luis-angel-god%C3%ADnez-padilla-5659761a5/">Luis Angel Godínez Padilla</a></span></li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="languages-section">
+                <h4>Languages</h4>
+                <ul>
+                    <!-- <li><span>English - Intermediate</span></li>
+                    <li><span>Spanish - Native</span></li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="skills-section">
+                <h4>Skills</h4>
+                <ul>
+                    <!-- <li>JavaScript</li>
+                    <li>PHP</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Python</li>
+                    <li>React</li>
+                    <li>Laravel</li>
+                    <li>Django</li>
+                    <li>MySQL</li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-bar">
+        <div class="name-section">
+            <!-- <h1>Luis Godínez</h1>
+            <h6>Computer System Engineer</h6> -->
+        </div>
+
+        <div class="info-section">
+            <div class="work-section">
+                <h4>Work experience</h4>
+                <!-- <div>
+                    <h5>INFEJAL</h5>
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt magnam quia dicta nihil expedita corrupti quidem. Sequi tenetur impedit voluptate ullam. Repellendus facilis laborum cumque beatae, nam ipsum eligendi officia?</li>
+                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt magnam quia dicta nihil expedita corrupti quidem. Sequi tenetur impedit voluptate ullam. Repellendus facilis laborum cumque beatae, nam ipsum eligendi officia?</li>
+                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt magnam quia dicta nihil expedita corrupti quidem. Sequi tenetur impedit voluptate ullam. Repellendus facilis laborum cumque beatae, nam ipsum eligendi officia?</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="education-section">
+                <h4>Education</h4>
+                <!-- <div class="education-item">
+                    <div class="year">
+                        2016
+                    </div>
+                    <div>
+                        <h5>Computer System Engineer</h5>
+                        <p>Instituto Tecnologico de Ocotlan</p>
+                        <small>4.5 years</small>
+                    </div>
+                </div> -->
+                
+            </div>
+        </div>
+    </div>
+</div>
