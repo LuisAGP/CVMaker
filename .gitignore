@@ -3,5 +3,5 @@
 **/node_modules
 **/package-lock.json
 frontend/static/frontend/main.js
-frontend/static/frontend/main.js.LICENSE.txt
 db.sqlite3
+frontend/static/frontend/main.js.LICENSE.txt

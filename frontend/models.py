@@ -1,4 +1,5 @@
 from django.db import models
+import os
 
 
 # Create your models here.
@@ -13,3 +14,7 @@ class Template(models.Model):
     created_at       = models.DateTimeField(auto_now_add=True)
     update_at        = models.DateTimeField(auto_now_add=True)
     deleted_at       = models.DateTimeField(null=True, blank=True)
+
+    def _delete_image(self):
+        if os.path.isfile(self.image_url):
+            os.remove(self.image_url)

@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../../static/css/modal.css';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import Loading from './Loading.jsx';
 
 const Modal = (
     {
@@ -11,12 +12,19 @@ const Modal = (
         idForm="form",
         buttonOkName="Ok",
         functionButtonOk=false,
-        show,
+        functionButtonCancel=false,
+        show={modal: false, loading: false},
         setShow
     }) => {
 
     const hideModal = () => {
-        setShow(false);
+
+        if(functionButtonCancel){
+            functionButtonCancel();
+        }
+
+        setShow({...show, modal: false});
+
     }
 
 
@@ -25,9 +33,9 @@ const Modal = (
     }
 
   return (
-    <div className={show ? 'modal-background' : 'modal-background hidden'}>
+    <div className={show.modal ? 'modal-background' : 'modal-background hidden'}>
         <div 
-            className={show ? 'modal-content shown' : 'modal-content hide'} 
+            className={show.modal ? 'modal-content shown' : 'modal-content hide'} 
             style={{
                 width: width,
                 height: height
@@ -49,8 +57,10 @@ const Modal = (
 
             <div className='modal-footer'>
                 {
-                    <button onClick={ functionButtonOk ? functionButtonOk : defaultFunction} className="modal-button ok-button">
-                        {buttonOkName}
+                    <button onClick={ functionButtonOk && !show.loading ? functionButtonOk : defaultFunction} className="modal-button ok-button">
+                        { 
+                            show.loading ? buttonOkName : <Loading />
+                        }
                     </button>
                 }
 

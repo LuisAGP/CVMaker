@@ -20,6 +20,13 @@ module.exports = {
         exclude: /node_modules/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(jpg|png|svg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        },
+    },
     ],
   },
   optimization: {

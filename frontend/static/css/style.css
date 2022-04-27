@@ -33,3 +33,8 @@ a{
     text-decoration: none;
     color: unset;
 }
+
+.center{
+    width: 100%;
+    text-align: center;
+}

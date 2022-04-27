@@ -81,6 +81,9 @@
     padding-bottom: .5rem;
     padding-top: .5rem;
     border-top: 1px solid var(--secondary-color);
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
 

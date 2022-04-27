@@ -84,7 +84,10 @@ def get_templates(request):
         response = []
 
         for item in templates.values():
-            response.append({"template": f"media/templates/templates_images/{item['image_name']}"})
+            response.append({
+                "template": f"media/templates/templates_images/{item['image_name']}",
+                "id_template": item['id_template']
+            })
 
     except Exception as e:
         response = {'message': str(e), 'status': 500}
@@ -93,6 +96,26 @@ def get_templates(request):
 
 
 
+
+def delete_template(request):
+    response = {}
+
+    try:
+
+        data = request.POST
+
+        template = Template.objects.get(pk=data['id_template'])
+
+        template.file.delete(save=False)
+        template._delete_image()
+        template.delete()
+
+        response = {'message': "Template deleted", 'status': 200}
+
+    except Exception as e:
+        response = {'message': str(e), 'status': 500}
+
+    return HttpResponse(json.dumps(response), content_type="application/json")
 
 
 

@@ -6,11 +6,12 @@ import Modal from '../widgets/Modal.jsx';
 import Alert from '../widgets/Alert.jsx';
 import { ajax } from '../tools/helpers.js';
 import html2canvas from 'html2canvas';
-import { urlBase } from '../tools/helpers.js'
+import { urlBase } from '../tools/helpers.js';
 
 const Templates = () => {
 
-    const [show, setShow] = React.useState(false);
+    const [modalNewTemplate, setModalNewTemplate] = React.useState({modal: false, loading: false});
+    const [modalDeleteTemplate, setModalDeleteTemplate] = React.useState({modal: false, loading: false});
     const [alert, setAlert] = React.useState({
         status: 'hide',
         message: '',
@@ -33,11 +34,35 @@ const Templates = () => {
                 
                 try {
                     
+                    removeItemsTemplates();
+
                     for(let i of data){
 
                         let template = document.createElement('div');
                         template.innerHTML = `<img src="${urlBase}/${i.template}" />`;
-                        template.className = "item-template"
+                        template.className = "item-template";
+
+                        template.onmouseover = function(){
+
+                            if(this.querySelector('.delete-template-button')){ return; }
+
+                            let deleteButton       = document.createElement('a');
+                            deleteButton.className = "delete-template-button";
+                            deleteButton.innerText = "Delete";
+
+                            deleteButton.onclick = function(){ deleteTemplate(i.id_template); }
+                            this.append(deleteButton);
+
+                        }
+
+                        template.onmouseout = function(){
+                            
+                            let e = event.toElement || event.relatedTarget;
+                            if (e.parentNode == this || e == this) { return; }
+
+                            this.querySelector('.delete-template-button').remove();
+
+                        }
     
                         document.getElementById('templates-content').append(template);
     
@@ -45,6 +70,84 @@ const Templates = () => {
 
                 } catch (error) {
                     console.log(error);
+                }
+
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+
+    }
+
+
+
+
+
+    /**
+     * Function to clean templates items from screen
+     * @author Luis GP
+     * @returns {Boolean}
+     */
+    const removeItemsTemplates = () => {
+
+        let items = document.querySelectorAll('.item-template');
+        for(let item of items){
+            item.remove();
+        }
+
+        return false;
+
+    }
+
+
+
+
+
+
+
+    /**
+     * Function for delete a template
+     * @author Luis GP
+     * @param {Integer} idTemplate
+     */
+    const deleteTemplate = (idTemplate, deleteNow=false) => {
+
+        if(!deleteNow){
+
+            document.getElementById('form-deleteTemplate-id_template').value = idTemplate;
+            setModalDeleteTemplate({...modalNewTemplate, modal: true});
+
+            return;
+        }
+        
+        ajax({
+            url: '/deleteTemplate/',
+            data: {
+                id_template: idTemplate ? idTemplate : document.getElementById('form-deleteTemplate-id_template').value
+            },
+            success: function(data){
+                
+                try {
+                   
+                    if(data.status == 200){
+                        setAlert({
+                            message: data.message,
+                            type: 'info',
+                            status: 'show'
+                        });
+                        getTemplates();
+                        setModalDeleteTemplate({...modalNewTemplate, modal: false});
+                    }else{
+                        setAlert({
+                            message: data.message,
+                            type: 'error',
+                            status: 'show'
+                        });
+                    }
+                    
+                } catch (error) {
+                    console.error(error);
                 }
 
             },
@@ -81,13 +184,15 @@ const Templates = () => {
                         message: data.message,
                         type: 'info',
                         status: 'show'
-                    })
+                    });
+                    getTemplates();
+                    setModalNewTemplate({...modalNewTemplate, modal: false});
                 }else{
                     setAlert({
                         message: data.message,
                         type: 'error',
                         status: 'show'
-                    })
+                    });
                 }
             },
             error: function(error){
@@ -101,6 +206,13 @@ const Templates = () => {
 
 
 
+
+
+    /**
+     * Function to load a preview image of the template
+     * @author Luis GP
+     * @return {Boolean}
+     */
     const previewHtml = () =>{
 
         try{
@@ -114,8 +226,9 @@ const Templates = () => {
 
                 let content = document.getElementById("previewHTML");
                 content.innerHTML = reader.result;
+                content.style = `margin-top: 2rem; padding: 2rem; background-color: rgba(107, 107, 107, 0.699);`;
 
-                html2canvas(document.getElementById("template-div")).then(function(canvas) {
+                html2canvas(content.querySelector('div')).then(function(canvas) {
                     content.innerHTML = "";
                     content.appendChild(canvas);
                     // Aquí se debe habilitar el botón
@@ -135,6 +248,29 @@ const Templates = () => {
 
 
 
+    /**
+     * Function to clean the preview section in modal
+     * @author Luis GP
+     * @return {Boolean}
+     */
+    const closeModalNewTemplate = () => {
+
+        try {
+           
+            let content = document.getElementById("previewHTML");
+            content.innerHTML = "";
+            content.style = ``;
+            
+        } catch (error) {
+            console.error(e);
+        }
+
+        return false;
+
+    }
+
+
+
 
     React.useEffect( () => {
 
@@ -149,7 +285,7 @@ const Templates = () => {
         <>
             <div id="templates-content" className='templrates-content body'>
 
-                <a className='create-new-template' onClick={() => setShow(true)}>
+                <a className='create-new-template' onClick={() => setModalNewTemplate({...modalNewTemplate, modal: true})}>
                     <ArticleOutlinedIcon 
                         className="svg-centered"
                         sx={{ fontSize: 60 }}
@@ -162,13 +298,13 @@ const Templates = () => {
 
             <Modal
                 title="New Template"
-                show={show}
-                setShow={setShow}
-                // height="14rem"
+                show={modalNewTemplate}
+                setShow={setModalNewTemplate}
                 width="60rem"
                 height='auto'
                 buttonOkName="Upload"
                 functionButtonOk={uploadTemplate}
+                functionButtonCancel={closeModalNewTemplate}
                 idForm="form-loadTemplate"
                 >
                 <div className='input-group'>
@@ -177,6 +313,23 @@ const Templates = () => {
                 </div>
                 <div id='previewHTML' className="previewTemplate"></div>
             </Modal>
+
+            <Modal
+                title="Delete template"
+                show={modalDeleteTemplate}
+                setShow={setModalDeleteTemplate}
+                width="20rem"
+                height='auto'
+                buttonOkName="Delete"
+                functionButtonOk={() => deleteTemplate(null, true)}
+                idForm="form-deleteTemplate"
+                >
+                <div className='input-group'>
+                    <h4 className='center'>Are you sure to delete the template?</h4>
+                    <input type="hidden" name='id_template' id="form-deleteTemplate-id_template"/>
+                </div>
+            </Modal>
+
             <Alert alert={alert} setAlert={setAlert}/>
         </>
     )

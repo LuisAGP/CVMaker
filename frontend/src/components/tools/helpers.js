@@ -11,7 +11,9 @@ export function ajax(json){
             data = json.data
         }else if(json.data && typeof json.data == 'object'){
             data = new FormData();
-            data.append('data', JSON.stringify({hola: "Saludo"}));
+            Object.keys(json.data).forEach((key) => {
+                data.append(key, json.data[key]);
+            });
         }else if(json.data){
             data = json.data;
         }

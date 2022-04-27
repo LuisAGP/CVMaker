@@ -7,4 +7,5 @@ urlpatterns = [
     path('templates/', index),
     path('uploadTemplate/', upload_template),
     path('getTemplates/', get_templates),
+    path('deleteTemplate/', delete_template)
 ]

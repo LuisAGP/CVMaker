@@ -31,9 +31,9 @@
 .previewTemplate{
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    /* margin-top: 2rem;
     padding: 2rem;
-    background-color: rgba(107, 107, 107, 0.699);
+    background-color: rgba(107, 107, 107, 0.699); */
 }
 
 
@@ -45,11 +45,25 @@
     border: 2px solid var(--secondary-color);
     border-radius: 1rem;
     color: var(--secondary-color);
-    cursor: pointer;
     overflow: hidden;
     background-color: darkseagreen;
 }
 
 .item-template img{
     height: 100%;
+}
+
+.delete-template-button{
+    position: absolute;
+    top: .8rem;
+    right: .8rem;
+    background-color: #d27070;
+    color: white;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.delete-template-button:hover{
+    filter: brightness(1.1);
 }
