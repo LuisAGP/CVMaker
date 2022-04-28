@@ -127,6 +127,8 @@ const Templates = () => {
                 id_template: idTemplate ? idTemplate : document.getElementById('form-deleteTemplate-id_template').value
             },
             success: function(data){
+
+                setModalDeleteTemplate({loading: true, ...modalDeleteTemplate});
                 
                 try {
                    
@@ -137,13 +139,14 @@ const Templates = () => {
                             status: 'show'
                         });
                         getTemplates();
-                        setModalDeleteTemplate({...modalNewTemplate, modal: false});
+                        setModalDeleteTemplate({loading: false, modal: false});
                     }else{
                         setAlert({
                             message: data.message,
                             type: 'error',
                             status: 'show'
                         });
+                        setModalDeleteTemplate({loading: false, ...modalDeleteTemplate});
                     }
                     
                 } catch (error) {
@@ -172,7 +175,9 @@ const Templates = () => {
 
         let canvas  = document.getElementById('previewHTML').getElementsByTagName('canvas')[0];
         let formData = new FormData(document.getElementById('form-loadTemplate'));
-        formData.append('template_image', canvas.toDataURL('image/jpeg', 1.0))
+        formData.append('template_image', canvas.toDataURL('image/jpeg', 1.0));
+
+        setModalNewTemplate({...modalNewTemplate, loading: true});
                 
         ajax({
             url: '/uploadTemplate/',
@@ -193,6 +198,7 @@ const Templates = () => {
                         type: 'error',
                         status: 'show'
                     });
+                    setModalNewTemplate({...modalNewTemplate, loading: false});
                 }
             },
             error: function(error){
@@ -217,7 +223,7 @@ const Templates = () => {
 
         try{
 
-            // Aquí se debe desabilitar el botón
+            setModalNewTemplate({...modalNewTemplate, loading: true});
 
             let file = document.getElementById('input-files').files[0];
             const reader = new FileReader();
@@ -231,7 +237,7 @@ const Templates = () => {
                 html2canvas(content.querySelector('div')).then(function(canvas) {
                     content.innerHTML = "";
                     content.appendChild(canvas);
-                    // Aquí se debe habilitar el botón
+                    setModalNewTemplate({...modalNewTemplate, loading: false});
                 });
 
             }, false);

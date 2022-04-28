@@ -1,8 +1,8 @@
 import React from 'react';
-import loading from '../../../static/images/Loading.gif';
+import loading from '../../../static/images/loading.gif';
 
-const Loading = ({status=false}) => {
-    return status ? <img src={require(loading)} alt="" /> : null;
+const Loading = () => {
+    return <img src={loading} alt="" style={{maxWidth: '100%', maxHeight: '100%'}}/>;
 }
 
 export default Loading

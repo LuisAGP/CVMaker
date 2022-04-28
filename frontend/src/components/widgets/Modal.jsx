@@ -59,7 +59,7 @@ const Modal = (
                 {
                     <button onClick={ functionButtonOk && !show.loading ? functionButtonOk : defaultFunction} className="modal-button ok-button">
                         { 
-                            show.loading ? buttonOkName : <Loading />
+                            !show.loading ? buttonOkName : <Loading />
                         }
                     </button>
                 }
