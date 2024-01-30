@@ -572,6 +572,8 @@ def delete_course_info(request):
 
 
 
+
+
 # Function for generate pdf resume
 # @author Luis GP
 # @return JSON
