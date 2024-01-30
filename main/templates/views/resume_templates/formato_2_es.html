@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block header %}{% endblock %}
+
+{% block title %}{{ resume.resume_name }}{% endblock %}
+
+{% block body %}
+<style>
+    @page {
+        /*Sheet size: width: 21.59cm height: 29.95cm*/
+        size: A4;    /* Change from the default size of A4 */
+        margin: 0mm; /* Set margin on each page */
+    }
+    body{
+        padding: 0; 
+        margin: 0;
+        max-width: 21.59cm;
+        min-height: 29.95cm;
+        color: #c09001;
+    }
+    a{text-decoration: none;}
+</style>
+
+
+<div class="content">
+    <div class="name-section">
+        <h1>{{ resume.name }} {{ resume.lastname }}</h1>
+        <h6>{{ resume.grade }}</h6>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+{% block alert %}{% endblock %}

@@ -1,0 +1,51 @@
+<div class="container">
+    <form action="#" id="form-languageInfo">
+
+        <div>
+            <div class="row">
+                <div class="col-2 text-center">Level</div>
+                <div class="col-8 text-center">Language</div>
+                <div class="col-2 text-center">Action</div>
+            </div>
+            
+            <div id="languages-container">
+                {% for language in languages %}
+                <div class="row mb-2">
+                    <div class="form-group col-sm-2 col-4">
+                        <input type="text" class="form-control" value="{% firstof language.level '' %}" disabled>
+                    </div>
+                
+                    <div class="form-group col-sm-8 col-6">
+                        <input type="tel" class="form-control" value="{% firstof language.language '' %}" disabled>
+                    </div>
+
+                    <div class="col-2 text-center">
+                        <span class="btn btn-danger" onclick="deleteLanguage('{{ language.id }}')">
+                            <i class="bi bi-trash-fill"></i>
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-2 col-4">
+                <select name="level" class="form-control" required>
+                    <option value="" disabled selected>---</option>
+                    {% for level in levels %}
+                        <option value="{{ level.0 }}">{{ level.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        
+            <div class="form-group col-sm-8 col-6">
+                <input type="text" class="form-control" name="language" value="" required>
+            </div>
+
+            <div class="col-2 text-center"></div>
+        </div>
+        
+        <button type="button" class="btn btn-info mt-3" onclick="addLanguage()">Save</button>
+    </form>
+</div>

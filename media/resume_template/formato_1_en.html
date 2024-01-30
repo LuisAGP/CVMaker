@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+
+{% block header %}{% endblock %}
+
+{% block title %}{{ resume.resume_name }}{% endblock %}
+
+{% block body %}
+<style>
+    @page {
+        /*Sheet size: width: 21.59cm height: 29.95cm*/
+        size: A4;    /* Change from the default size of A4 */
+        margin: 0mm; /* Set margin on each page */
+    }
+    body{padding: 0; margin: 0;}
+    a{
+        text-decoration: none;
+        color: #7c8687;
+    }
+    .content{
+        width: 21.59cm;
+        min-height: 29.95cm;
+        display: flex;
+    }
+    .left-side{
+        width: 30%;
+        min-height: 29.95cm;
+        background-color: rgb(255, 255, 255);
+    }
+    .right-bar{
+        color: rgb(58, 58, 58);
+        min-height: 29.95cm;
+        background-color: #dcecee;
+        width: 70%;
+    }
+    h1,h2,h3,h4,h5,h6{
+        margin: 0;
+    }
+    .triangle{
+        width: 0;
+        height: 0;
+        border-left: 3.25cm solid transparent;
+        border-right: 3.25cm  solid transparent;
+        border-top: 110px solid #7c8687;
+        margin-bottom: 1.8rem;
+    }
+    .image-section{
+        width: 100%;
+        height: 14rem;
+        background-color: #7c8687;
+        position: relative;
+    }
+    .image-content{
+        overflow: hidden;
+        border-radius: 50%;
+        width: 10rem;
+        height: 10rem;
+        position: absolute;
+        top: 2.5rem;
+        left: 1.1cm;
+        background-color: white;
+    }
+    .image-content img{
+        text-align: center;
+        width: 100%;
+    }
+    .info-section{
+        padding: 1.5rem 1rem 0 1rem;
+        color: #7c8687;
+        line-height: 1.2;
+    } 
+    h4{
+        text-transform: uppercase;
+        margin: 0 0 2.2rem 0;
+        padding: 0;
+        position: relative;
+        letter-spacing: .2rem;
+    }
+    h4::after{
+        content: '';
+        width: 3.5rem;
+        height: .3rem;
+        background-color: #7c8687;
+        position: absolute;
+        bottom: -.8rem;
+        left: 0;
+    }
+    .contact-section ul{
+        padding: 0;
+        list-style: none;
+    }
+    li{
+        padding-bottom: .6rem;
+        font-size: .9rem;
+    }
+    .contact-section img{
+        margin-right: .7rem;
+    }
+    .contact-section li{
+        display: flex;
+        align-items: center;
+    }
+    .languages-section ul, .skills-section ul{
+        padding: 0;
+        list-style: inside;
+    }
+    .languages-section li, .skills-section li{
+        padding-bottom: .6rem;
+    }
+    .name-section{
+        text-align: center;
+        padding: 3rem 0;
+    }
+    .name-section h6{
+        color: #7c8687;
+        font-size: 1.1rem;
+        font-weight: lighter;
+    }
+    h1{
+        font-weight: lighter;
+    }
+    .right-bar .info-section{
+        padding-left: 1.5rem; 
+        padding-right: 1.5rem; 
+        text-align: justify;
+    }
+    .work-section, .education-section{
+        padding-left: 1rem;
+        padding-right: 2rem;
+    }
+    .right-bar ul{
+        padding: 0 0 0 .5rem;
+        list-style: none;
+    }
+    .education-section ul{ list-style: none; }
+    .work-section ul{
+        margin-top: .5rem;
+        list-style: disc;
+        margin-left: 10px;
+    }
+    .education-item{
+        display: flex;
+        align-items: flex-start;
+        padding-bottom: 1rem;
+    }
+    .education-item .year{ width: 50px; }
+    .education-info{ width: calc(100% - 50px);}
+    h5{
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    h6{ 
+        font-size: 1rem;
+        font-weight: bold; 
+    }
+    p{
+        margin: 0;
+        font-size: .9rem;
+    }
+</style>
+
+
+<div class="content" id="template-div">
+    <div class="left-side">
+        <div class="image-section">
+            <div class="image-content" id="image-section">
+                <img src="http://localhost:8000{{ request.user.profile.photo.url }}" alt="">
+            </div>
+        </div>
+        <div class="triangle"></div>
+
+        <div class="info-section">
+            <div class="contact-section">
+                <h4>Contact</h4>
+                <ul>
+                    {% load utils %}
+                    {% for contact in contacts %}
+                    <li>
+                        <i class="{{ contact.contact_type|getIcon }}"></i>
+                        {% if contact.url %}
+                        <a href="{{ contact.url }}" target="_blank" style="margin-left: 5px;">{{ contact.value }}</a>
+                        {% else %}
+                        <span style="margin-left: 5px;">{{ contact.value }}</span>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="languages-section">
+                <h4>Languages</h4>
+                <ul>
+                    {% for language in languages %}
+                    <li><span>{{ language.language }} - {{ language.level }}</span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="skills-section">
+                <h4>Skills</h4>
+                <ul>
+                    {% for skill in skills %}
+                    <li>{{ skill.skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-bar">
+        <div class="name-section">
+            <h1>{{ resume.name }} {{ resume.lastname }}</h1>
+            <h6>{{ resume.grade }}</h6>
+        </div>
+
+        <div class="info-section">
+            <div class="work-section">
+                <h4>Work experience</h4>
+                {% for work in works %}
+                <div>
+                    <h5>{{ work.company_name }}</h5>
+                    <p>{{ work.charge }}</p>
+                    <ul>
+                        {% for item in work.description|split %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="education-section">
+                <h4>Education</h4>
+                {% for education in educations %}
+                <div class="education-item">
+                    <div class="year">
+                        {{ education.from_date|date:'Y' }}
+                    </div>
+                    <div>
+                        <h6>{{ education.field_of_study }}</h6>
+                        <p>{{ education.academy_name }}</p>
+                        <small>{{ education.duration }}</small>
+                    </div>
+                </div>
+                {% endfor %}
+                {% for course in courses %}
+                <div class="education-item">
+                    <div class="year">{{ course.from_date|date:'Y' }}</div>
+                    <div class="education-info">
+                        <h6>{{ course.field_of_study }}</h6>
+                        <p>{{ course.academy_name }}</p>
+                        <small>{{ course.duration }} h</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+{% block alert %}{% endblock %}

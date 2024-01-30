@@ -1,0 +1,35 @@
+<div class="container">
+    <form action="#" id="form-skillInfo">
+        <div class="row">
+            <div class="col-10 text-center">Skill</div>
+            <div class="col-2 text-center">Action</div>
+        </div>
+
+        <div id="skill-container">
+            {% for skill in skills %}
+            <div class="row mb-2">
+                <div class="form-group col-10">
+                    <input type="text" class="form-control" value="{% firstof skill.skill '' %}" disabled>
+                </div>
+
+                <div class="col-2 text-center">
+                    <span class="btn btn-danger" onclick="deleteSkill('{{ skill.id }}')">
+                        <i class="bi bi-trash-fill"></i>
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+        
+            <div class="form-group col-10">
+                <input type="text" class="form-control" name="skill" value="" required>
+            </div>
+
+            <div class="col-2 text-center"></div>
+        </div>
+        
+        <button type="button" class="btn btn-info mt-3" onclick="addSkill()">Save</button>
+    </form>
+</div>

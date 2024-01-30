@@ -1,0 +1,25 @@
+<div class="container">
+    <form action="#" id="form-resumeGeneralInfo">
+        <div class="form-group">
+            <label class="form-label mt-4">Name:</label>
+            <input type="input" class="form-control" name="name" value="{% firstof resume.name '' %}">
+        </div>
+    
+        <div class="form-group">
+            <label class="form-label mt-4">Last Name:</label>
+            <input type="input" class="form-control" name="lastname" value="{% firstof resume.lastname '' %}">
+        </div>
+    
+        <div class="form-group">
+            <label class="form-label mt-4">Grade:</label>
+            <input type="input" class="form-control" name="grade" value="{% firstof resume.grade '' %}">
+        </div>
+    
+        <div class="form-group">
+            <label class="form-label mt-4">Introduction:</label>
+            <textarea name="introduction" class="form-control" rows="5">{% firstof resume.introduction "" %}</textarea>
+        </div>
+
+        <button type="button" class="btn btn-info mt-3" onclick="saveGeneralInfo()">Save</button>
+    </form>
+</div>

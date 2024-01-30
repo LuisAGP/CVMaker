@@ -1,0 +1,31 @@
+{% extends 'modal.html' %}
+
+<!-- ********************Modal Info******************** -->
+
+{% block idModal %}modalNewResume{% endblock %}
+{% block modalTitle %}Save Resume{% endblock %}
+{% block action %}{% url 'new_resume' %}{% endblock %}
+
+<!-- ********************Modal Info******************** -->
+    
+{% block modalBody %}
+<div>
+    <div class="form-group">
+        <label class="form-label">Resume name:</label>
+        <input type="input" class="form-control" name="resume_name" placeholder="Example" required id="modalNewResume-resume_name">
+    </div>
+    <div class="form-group">
+        <label class="form-label">Template:</label>
+        <select name="template" class="form-control" id="modalNewResume-template">
+            {% for i in templates %}
+            <option value="{{i.id}}">{{i.template}}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="id_resume" id="modalNewResume-id_resume">
+    </div>
+</div>
+{% endblock %}
+
+{% block modalButton %}
+    <button type="submit" class="btn btn-info">Save</button>
+{% endblock %}

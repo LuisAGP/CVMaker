@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Resume - List{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/resume_list.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalNewResume">New Resume</button>
+    <div class="container py-3 row border">
+        {% if resume_list %}
+            {% for resume in resume_list %}
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="card border-dark p-0">
+                        <div class="card-header"><small><a href="{% url 'save_resume' idResume=resume.id %}">{{ resume.id }}</a></small></div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ resume.resume_name }}</h4>
+                            <div>
+                                <span class="badge bg-info">Created At: {{ resume.created_at|date:"M d, Y" }}</span>
+                                <div class="float-end">
+                                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalNewResume" data-id_resume="{{ resume.id }}">Edit</button>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalDeleteResume" onclick="deleteResume('{{ resume.id }}')">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+                <div class="text-center">
+                    <h2>None resume created yet!</h2>
+                </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+{% include 'views/modal/new_resume.html' %}
+{% include 'views/modal/delete_resume.html' %}
+{% endblock %}

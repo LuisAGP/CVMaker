@@ -1,0 +1,83 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    align-items: center;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+    height: 100vh;
+}
+
+.main-content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.form-style {
+    width: 100%;
+    min-height: 100vh;
+    max-width: 330px;
+    padding-top: 50px;
+    margin: auto;
+}
+
+.form-style form{
+    width: 100%;
+}
+
+.form-style .checkbox {
+    font-weight: 400;
+}
+
+.form-style .form-floating:focus-within {
+    z-index: 2;
+}
+
+.inputMonth, .inputYear{
+    text-align: center;
+}
+
+.month-line{
+    position: relative;
+}
+
+.month-line::after{
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: 10px;
+    height: 2px;
+    top: calc(50% - 1px);
+    right: -.3rem;
+    z-index: 10;
+}
+
+#modal-content {
+    padding: .75rem 1.25rem;
+}
+
+.modal-bg-success{
+    color: #155724;
+    background-color: #d3ffdd;
+    border-color: #c3e6cb;
+}
+
+.modal-bg-danger{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.relative{ position: relative; }
+
+.hidden{ display: none; }
+.shown{ display: block; }
+.url-input{
+    position: absolute;
+    bottom: calc(-100% - .5rem);
+    max-width: calc(100% - var(--bs-gutter-x));
+}

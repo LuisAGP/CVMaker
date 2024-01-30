@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}RMK - Login{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block body %}
+<div class="text-center container form-style">
+    <main>
+        <form action="" method="post">{% csrf_token %}
+            <img class="mb-4" src="{% static 'img/login.png' %}" width="90" height="90">
+            <div class="mb-3 text-start">
+                <label class="form-label">Username:</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+            <div class="mb-3 text-start">
+                <label class="form-label">Password:</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="w-100 btn btn-primary">Sign In</button>
+            <div class="mt-1 text-start">
+                <a href="{% url 'register' %}">New here? Register now</a>
+            </div>
+            <p class="mt-5 mb-3 text-muted">Copyright © {% now 'Y' %} ResumeMK</p>
+        </form>
+    </main>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
